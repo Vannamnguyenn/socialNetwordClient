@@ -6,6 +6,7 @@ import {
   GET_POST,
   POST_LOADING,
   UPDATE_POST,
+  ADD_POST,
 } from "../types/postTypes";
 import { LoadingAction } from "./loadingAction";
 import { toastAction } from "./toastAction";
@@ -44,6 +45,12 @@ export const createPostAction = (content, files) => async (dispatch) => {
     const response = await postAPI.createPost({ content, images });
     dispatch(LoadingAction(false));
     dispatch(toastAction(response.data));
+    dispatch({
+      type: ADD_POST,
+      payload: {
+        post: response.data.post,
+      },
+    });
   } catch (error) {
     console.error(error);
     dispatch(LoadingAction(false));
