@@ -20,6 +20,7 @@ const Auth = ({ page }) => {
   const { isAuthenticated } = useSelector((state) => state.auth);
   if (isAuthenticated) history.push({ pathname: "/" });
   const responseGoogle = async (response) => {
+    console.log(response);
     if (!response.tokenId) return;
     const payload = { tokenId: response.tokenId };
     const data = await dispatch(loginGoogleAction(payload));
