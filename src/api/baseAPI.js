@@ -3,10 +3,8 @@ import axios from "axios";
 const axiosConfig = axios.create({
   baseURL: "https://social-networking.herokuapp.com/api/v1/",
   headers: {
-    "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/json",
   },
-  withCredentials: true,
 });
 
 // Add a request interceptor
