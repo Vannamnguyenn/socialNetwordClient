@@ -1,0 +1,56 @@
+.update-post-modal {
+  & .modal-body {
+    padding-bottom: 0;
+  }
+  & .modal-content {
+    border: none;
+  }
+  & .modal-header {
+    justify-content: center;
+    & h4 {
+      margin-bottom: 0;
+      color: #888;
+    }
+  }
+  & textarea {
+    border: none !important;
+    height: 100px;
+    &:focus {
+      outline: none !important;
+    }
+  }
+  & .row {
+    max-height: 350px;
+    overflow-y: scroll;
+    & div {
+      position: relative;
+      & i {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        color: rgb(209, 14, 14);
+        font-size: 1.3rem;
+        cursor: pointer;
+        z-index: 5;
+      }
+      & label {
+        cursor: pointer;
+      }
+    }
+  }
+  .count-text-emotion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    position: relative;
+    & .picker {
+      position: absolute;
+      left: 50px;
+      top: 0;
+      z-index: 5;
+    }
+  }
+}

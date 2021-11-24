@@ -1,0 +1,24 @@
+.modal-action-post {
+  padding: 0;
+  & .modal-body {
+    padding: 0;
+  }
+  & ul {
+    list-style: none;
+    margin-bottom: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    & li {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      &:hover {
+        background-color: rgb(245, 243, 243);
+      }
+    }
+  }
+  & .modal-content {
+    border: none !important;
+    max-width: 300px;
+  }
+}

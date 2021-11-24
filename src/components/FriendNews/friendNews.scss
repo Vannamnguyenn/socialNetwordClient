@@ -1,0 +1,30 @@
+.friend-news {
+  padding: 1rem;
+  border: 1px solid var(--light-border);
+  border-radius: 5px;
+
+  @media screen and (max-width: 550px) {
+    overflow-x: scroll;
+  }
+  &-list {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  &-item {
+    text-align: center;
+    margin: 0 10px;
+    & img {
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #e380b6;
+      margin-bottom: 7px;
+    }
+    & p {
+      margin-bottom: 0;
+      color: #777;
+    }
+  }
+}

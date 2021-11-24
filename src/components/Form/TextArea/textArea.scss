@@ -1,0 +1,14 @@
+textarea {
+  display: block;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  width: 100%;
+  border-radius: 4px;
+  color: #777777;
+  margin-bottom: 0.2rem;
+  border: 1px solid #e7dbdb;
+  transition: all 0.25s linear;
+}
+textarea:focus {
+  outline: 1px solid #999;
+}

@@ -1,0 +1,44 @@
+.update-profile-avatar {
+  text-align: center;
+  margin: 1rem 0 2rem;
+  position: relative;
+  & img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  &-chooseFile {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.3);
+    & i {
+      color: #d4a752;
+      font-size: 2rem;
+      position: absolute;
+      top: 20px;
+      right: 30px;
+    }
+  }
+}
+select {
+  display: block;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  width: 100%;
+  border-radius: 4px;
+  color: #777777;
+  margin-bottom: 0.2rem;
+  border: 1px solid #e7dbdb;
+  transition: all 0.25s linear;
+}
+
+select:focus {
+  outline: 1px solid #999;
+}

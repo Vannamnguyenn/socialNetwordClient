@@ -1,0 +1,6 @@
+export const GlobalTypes = {
+  LOADING: "LOADING",
+  SET_TOAST: "SET_TOAST",
+  CHANGE_THEME: "CHANGE_THEME",
+  GET_POST_DETAILS: "GET_POST_DETAILS",
+};

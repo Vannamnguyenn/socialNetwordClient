@@ -1,0 +1,165 @@
+.home {
+  margin-top: 2rem;
+  &-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &-body {
+    width: 930px;
+    & .home-body-left {
+      @media screen and (max-width: 992px) {
+        display: none;
+      }
+    }
+    & .home-body-right {
+      padding: 3rem 0;
+      & .top {
+        padding: 1rem 3.5rem;
+        background-color: rgba(var(--d87, 255, 255, 255), 1);
+        border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+        border-radius: 5px;
+        & h2 {
+          margin-bottom: 2rem;
+          font-size: 3rem;
+          color: #555;
+          font-family: "Dancing Script", cursive;
+        }
+        &-or {
+          color: #888;
+          font-size: 0.8rem;
+          margin-top: 0.5rem;
+          position: relative;
+          &::after {
+            content: "";
+            position: absolute;
+            height: 0.8px;
+            background-color: rgb(180, 180, 180);
+            width: 30%;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+          }
+          &::before {
+            content: "";
+            position: absolute;
+            height: 0.8px;
+            background-color: rgb(180, 180, 180);
+            width: 30%;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+          }
+        }
+        & .login_social {
+          margin-top: 0.5rem;
+          margin-bottom: 0.5rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          & .col-6 {
+            padding: 0 10px;
+            &:first-child {
+              padding-left: 0 !important;
+            }
+            &:nth-child(2) {
+              padding-right: 0 !important;
+            }
+          }
+          & button {
+            font-size: 0.8rem !important;
+            box-shadow: none !important;
+            height: 35px !important;
+            width: 100%;
+            border: 1px solid #007bff !important;
+            justify-content: center;
+            overflow: hidden !important;
+            &:focus {
+              background-color: #fff !important;
+            }
+            & div {
+              &:focus {
+                background-color: #fff !important;
+              }
+            }
+          }
+        }
+
+        & .forgot_pass {
+          color: #888;
+        }
+      }
+      @media screen and (max-width: 992px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &-wapper {
+          width: 455px;
+        }
+      }
+      @media screen and (max-width: 500px) {
+        & .top {
+          padding: 1rem 1.5rem;
+        }
+        &-wapper {
+          width: 350px;
+        }
+      }
+    }
+    @media screen and (max-width: 992px) {
+      width: 100% !important;
+    }
+  }
+  & .bottom {
+    padding: 0.75rem;
+    background-color: rgba(var(--d87, 255, 255, 255), 1);
+    border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+    border-radius: 5px;
+    margin-top: 1rem;
+    & p {
+      margin-bottom: 0;
+    }
+    & .no_account {
+      color: #888;
+    }
+  }
+  & .getApp {
+    & p {
+      margin: 1rem 0;
+      color: #888;
+    }
+    & .col-6 {
+      padding: 0 10px;
+    }
+  }
+  &-image-background {
+    background-image: url("https://www.instagram.com/static/images/homepage/home-phones.png/43cc71bb1b43.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 100%;
+    width: 100%;
+    height: 618px;
+    position: relative;
+    & img {
+      position: absolute;
+      top: 100px;
+      right: 53.5px;
+    }
+  }
+}
+.my-facebook-button-class {
+  display: block;
+  & i {
+    margin-right: 5px;
+    color: blue;
+  }
+}
+.my-facebook-button-class.metro {
+  width: 100% !important;
+  border: none;
+  background-color: white;
+  border: 1px solid #007bff;
+  outline: none;
+}

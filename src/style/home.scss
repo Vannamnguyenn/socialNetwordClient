@@ -1,0 +1,32 @@
+.index {
+  height: calc(100vh - 55px);
+  padding-top: 2rem;
+
+  & .index-wrapper {
+    max-width: 1000px !important;
+    padding: 0;
+    display: flex;
+  }
+  &-left {
+    flex: 8;
+    padding: 0 1rem;
+  }
+  &-right {
+    flex: 4;
+    padding: 0 1rem;
+  }
+
+  @media screen and (max-width: 900px) {
+    & .index-wrapper {
+      flex-direction: column !important;
+    }
+    &-right {
+      display: flex !important;
+      justify-content: center;
+      & .suggest-follow {
+        min-width: 350px;
+        max-width: 500px;
+      }
+    }
+  }
+}
