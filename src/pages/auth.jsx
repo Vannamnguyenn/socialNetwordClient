@@ -76,7 +76,7 @@ const Auth = ({ page }) => {
                     </div>
                     <div className="col-6">
                       <FacebookLogin
-                        appId="432420964913046"
+                        appId="278266167568134"
                         autoLoad={false}
                         textButton="Facebook"
                         fields="name,email,picture"
