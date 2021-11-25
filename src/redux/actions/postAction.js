@@ -145,7 +145,7 @@ export const toggleSavedPost = (id, user, post) => async (dispatch) => {
   try {
     let newSaved = [...user.saved];
     const check = newSaved.includes(post._id);
-    console.log(check);
+
     if (check) {
       newSaved = newSaved.filter((p) => p !== post._id);
     } else {

@@ -104,7 +104,7 @@ const Profile = () => {
       <div className="text-center mt-5 mb-4">
         {loading && <img src={LoadingImg} width="100" height="100" alt="" />}
       </div>
-      {!profile && loading && <NotFound />}
+      {!profile && !loading && <NotFound />}
     </>
   );
 };
