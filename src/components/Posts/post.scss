@@ -34,13 +34,14 @@
 .post-body {
   & video {
     width: 100%;
-    height: 400px;
+    height: 600px;
     object-fit: contain;
   }
   & img {
     width: 100%;
-    height: 400px;
+    height: 600px;
     object-fit: cover;
+    object-position: top center;
   }
 }
 .post-bottom {
@@ -125,4 +126,8 @@
   bottom: 42%;
   background: rgba(0, 0, 0, 0.15);
   width: 8%;
+}
+
+.height-auto-i {
+  height: auto !important;
 }

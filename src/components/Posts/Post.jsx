@@ -11,7 +11,7 @@ import Comment from "../commment/Comment";
 import ModalActionPost from "../Modals/ModalActionPost";
 import "./post.scss";
 
-const Post = ({ post }) => {
+const Post = ({ post, styleImgDetails = null }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const checkLike = post.likes.findIndex((u) => u._id === user._id) !== -1;
@@ -45,12 +45,16 @@ const Post = ({ post }) => {
                 <video
                   src={image.url}
                   controls
-                  className="d-block w-100"
+                  className={`d-block w-100 ${
+                    styleImgDetails ? "height-auto-i" : ""
+                  }`}
                 ></video>
               ) : (
                 <img
                   alt={image.url}
-                  className="d-block w-100"
+                  className={`d-block w-100 ${
+                    styleImgDetails ? "height-auto-i" : ""
+                  }`}
                   src={image.url}
                 />
               )}
