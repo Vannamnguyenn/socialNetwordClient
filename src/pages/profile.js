@@ -101,7 +101,7 @@ const Profile = () => {
           </div>
         </div>
       )}
-      <div className="text-center mt-5 mb-4">
+      <div className="text-center mt-5 mb-4" style={{ minHeight: "70vh" }}>
         {loading && <img src={LoadingImg} width="100" height="100" alt="" />}
       </div>
       {!profile && !loading && <NotFound />}

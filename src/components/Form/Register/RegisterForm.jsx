@@ -37,7 +37,7 @@ const RegisterForm = () => {
     >
       {(formik) => {
         return (
-          <div className="form-login">
+          <div className="form-login text-start">
             <Form>
               <TextField name="fullname" type="text" placeholder="Fullname" />
               <TextField name="email" type="email" placeholder="Email" />

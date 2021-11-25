@@ -30,7 +30,7 @@ const LoginForm = () => {
       }}
     >
       {(formik) => (
-        <div className="form-login">
+        <div className="form-login text-start">
           <Form>
             <TextField name="email" type="email" placeholder="Email" />
             <TextField name="password" type="password" placeholder="Password" />

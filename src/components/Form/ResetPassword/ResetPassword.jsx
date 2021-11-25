@@ -42,7 +42,7 @@ const ResetPassword = () => {
       }}
       onSubmit={handleSubmit}
     >
-      <Form>
+      <Form className="text-start">
         <TextField
           name="password"
           type="password"

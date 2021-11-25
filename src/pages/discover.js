@@ -15,7 +15,10 @@ const Discover = () => {
     })();
   }, []);
   return (
-    <Container className="mt-5 mb-4 text-center">
+    <Container
+      className="mt-5 mb-4 text-center"
+      style={{ minHeight: "calc(100% - 55px)" }}
+    >
       {loading && <img src={LoadingImg} width="100" height="100" alt="" />}
       {!loading && (
         <div>

@@ -37,7 +37,7 @@ const ForGotPassword = () => {
           onSubmit={handleSubmit}
           validationSchema={validate}
         >
-          <Form>
+          <Form className="text-start">
             <TextField
               name="email"
               type="email"
