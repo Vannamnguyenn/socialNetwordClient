@@ -22,7 +22,7 @@ const ItemComment = ({ comment, post }) => {
   };
 
   const handleToggleLike = () => {
-    dispatch(toggleLikeComment(comment._id, post));
+    dispatch(toggleLikeComment(comment._id, post, user));
   };
 
   return (
@@ -68,7 +68,7 @@ const ItemComment = ({ comment, post }) => {
                 ) : (
                   <i
                     onClick={handleToggleLike}
-                    class="far fa-heart"
+                    className="far fa-heart"
                     style={{ color: "#555" }}
                   ></i>
                 )}
@@ -89,7 +89,7 @@ const ItemComment = ({ comment, post }) => {
                 commentUpdate={comment}
                 setUpdate={setUpdate}
               />
-              <span onClick={() => setUpdate(false)} class="text-danger">
+              <span onClick={() => setUpdate(false)} className="text-danger">
                 Cancel
               </span>
             </div>

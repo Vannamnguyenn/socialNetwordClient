@@ -33,7 +33,6 @@ export const createComment = (payload, post) => async (dispatch) => {
 
 export const deleteComment = (id, post) => async (dispatch) => {
   try {
-    await commentAPI.deleteComment(id);
     const newComments = [...post.comments].filter(
       (c) => c._id !== id && c.reply !== id
     );
@@ -46,6 +45,7 @@ export const deleteComment = (id, post) => async (dispatch) => {
         },
       },
     });
+    await commentAPI.deleteComment(id);
   } catch (error) {
     dispatch({
       type: UPDATE_POST,
@@ -82,12 +82,17 @@ export const updateComment = (id, payload, post) => async (dispatch) => {
   }
 };
 
-export const toggleLikeComment = (id, post) => async (dispatch) => {
+export const toggleLikeComment = (id, post, user) => async (dispatch) => {
   try {
-    const response = await commentAPI.toggleLikeComment(id);
     const newComments = [...post.comments].map((comment) => {
       if (comment._id === id) {
-        return response.data.comment;
+        const index = comment.likes.findIndex((u) => u._id === user._id);
+        if (index !== -1) {
+          comment.likes.splice(index, 1);
+        } else {
+          comment.likes.unshift(user);
+        }
+        return comment;
       }
       return comment;
     });
@@ -100,6 +105,7 @@ export const toggleLikeComment = (id, post) => async (dispatch) => {
         },
       },
     });
+    await commentAPI.toggleLikeComment(id);
   } catch (error) {
     dispatch({
       type: UPDATE_POST,

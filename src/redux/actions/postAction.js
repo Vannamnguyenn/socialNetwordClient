@@ -114,16 +114,26 @@ export const updatePost =
     }
   };
 
-export const toggleLikePost = (id) => async (dispatch) => {
+export const toggleLikePost = (id, user, post) => async (dispatch) => {
   try {
-    const res = await postAPI.likePost(id);
+    const index = [...post.likes].findIndex((u) => u._id === user._id);
+    let newLikes = [...post.likes];
+    if (index !== -1) {
+      newLikes.splice(index, 1);
+    } else {
+      newLikes.unshift(user);
+    }
     dispatch({
       type: UPDATE_POST,
       payload: {
-        post: res.data.post,
+        post: {
+          ...post,
+          likes: newLikes,
+        },
         id,
       },
     });
+    const res = await postAPI.likePost(id);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -131,16 +141,27 @@ export const toggleLikePost = (id) => async (dispatch) => {
   }
 };
 
-export const toggleSavedPost = (id) => async (dispatch) => {
+export const toggleSavedPost = (id, user, post) => async (dispatch) => {
   try {
-    const res = await postAPI.savePost(id);
+    let newSaved = [...user.saved];
+    const check = newSaved.includes(post._id);
+    console.log(check);
+    if (check) {
+      newSaved = newSaved.filter((p) => p !== post._id);
+    } else {
+      newSaved.push(post._id);
+    }
 
     dispatch({
       type: UPDATE_PROFILE,
       payload: {
-        user: res.data.user,
+        user: {
+          ...user,
+          saved: newSaved,
+        },
       },
     });
+    const res = await postAPI.savePost(id);
     return res.data;
   } catch (error) {
     console.error(error);

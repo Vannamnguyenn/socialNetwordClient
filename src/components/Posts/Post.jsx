@@ -17,10 +17,10 @@ const Post = ({ post }) => {
   const checkLike = post.likes.findIndex((u) => u._id === user._id) !== -1;
   const checkSavePost = user.saved.indexOf(post._id) !== -1;
   const handleToggleLike = (id) => {
-    dispatch(toggleLikePost(id));
+    dispatch(toggleLikePost(id, user, post));
   };
   const handleToggleSave = (id) => {
-    dispatch(toggleSavedPost(id));
+    dispatch(toggleSavedPost(id, user, post));
   };
 
   return (

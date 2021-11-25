@@ -9,16 +9,19 @@ import ProfileNav from "../components/Profile/ProfileNav";
 import SuggestFollowItem from "../components/SuggestFollow/SuggestFollowItem";
 import "../style/profile.scss";
 import NotFound from "./notFound";
+import LoadingImg from "../assets/images/loading.gif";
 
 const Profile = () => {
   const [profile, setProfile] = useState();
   const { user } = useSelector((state) => state.auth);
+  const [loading, setLoading] = useState(true);
   const { params } = useRouteMatch();
   useEffect(() => {
     const fetch = () => {
       (async () => {
         try {
           const res = await userAPI.getUser(params.slug);
+          setLoading(false);
           setProfile(res.data.user);
         } catch (error) {}
       })();
@@ -98,7 +101,10 @@ const Profile = () => {
           </div>
         </div>
       )}
-      {!profile && <NotFound />}
+      <div className="text-center mt-5 mb-4">
+        {loading && <img src={LoadingImg} width="100" height="100" alt="" />}
+      </div>
+      {!profile && loading && <NotFound />}
     </>
   );
 };

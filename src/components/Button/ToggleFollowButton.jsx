@@ -9,17 +9,15 @@ const ToggleFollowButton = ({ own, user }) => {
   const [check, setCheck] = useState(() => own.following.includes(user._id));
   const handleToggleFollow = async (id) => {
     if (check) {
-      await userAPI.unFollowUser(id);
       dispatch({
         type: UPDATE_FOLLOW,
         payload: {
           id,
         },
       });
-
+      await userAPI.unFollowUser(id);
       return setCheck(false);
     }
-    await userAPI.followUser(id);
 
     dispatch({
       type: UPDATE_FOLLOW,
@@ -27,6 +25,7 @@ const ToggleFollowButton = ({ own, user }) => {
         id,
       },
     });
+    await userAPI.followUser(id);
     return setCheck(true);
   };
 
