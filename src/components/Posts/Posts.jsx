@@ -31,9 +31,10 @@ const Posts = () => {
           </Button>
         </div>
       )}
-      {results === 0 && !loading && (
-        <h1 className="text-center mt-5 mb-4 text-muted">No posts</h1>
-      )}
+      {results === 0 &&
+        !loading &&
+        posts.length ===
+          0(<h1 className="text-center mt-5 mb-4 text-muted">No posts</h1>)}
       <UpdatePostModal />
     </div>
   );

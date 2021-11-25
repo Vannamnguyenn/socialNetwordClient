@@ -16,7 +16,6 @@ const RenderGalleryGrid = ({ posts }) => {
                     <i className="far fa-heart"></i>
                   </span>
                   <span>
-                    {console.log(post.comments)}
                     {post.comments.length}
                     <i className="far fa-comment"></i>
                   </span>

@@ -19,7 +19,8 @@ const setAccesssTokenStoreage = () => {
 
 const setCookiesStoreage = (token, options) => {
   const cookies = new Cookies();
-  cookies.set("refresh_token", token, options);
+  cookies.set("refresh_token", token);
+  console.log(cookies.get("refresh_token"));
 };
 
 export const registerAction = (payload) => async (dispatch) => {
