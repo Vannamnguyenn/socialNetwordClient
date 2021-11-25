@@ -66,7 +66,7 @@ const Auth = ({ page }) => {
                   <div className="login_social">
                     <div className="col-6">
                       <GoogleLogin
-                        clientId="811883403522-lov42ak4hbs9dup24gkk6m8ci5k7dpj8.apps.googleusercontent.com"
+                        clientId="811883403522-homcojno6j91tc54hug2ujueg3is442g.apps.googleusercontent.com"
                         buttonText="Google"
                         onSuccess={responseGoogle}
                         autoLoad={false}
