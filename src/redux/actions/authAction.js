@@ -2,6 +2,7 @@ import authAPI from "../../api/authAPI";
 import { setTokenHeader } from "../../until/setToken";
 import { AUTH_LOGIN, AUTH_LOGOUT, LOAD_USER } from "../types/authType";
 import { LoadingAction } from "./loadingAction";
+import Cookies from "universal-cookie";
 
 const payloadSuccessAuth = (user, access_token) => ({
   type: AUTH_LOGIN,
@@ -16,6 +17,11 @@ const setAccesssTokenStoreage = () => {
   localStorage.setItem("firstLogin", true);
 };
 
+const setCookiesStoreage = (token, options) => {
+  const cookies = new Cookies();
+  cookies.set("refresh_token", token, options);
+};
+
 export const registerAction = (payload) => async (dispatch) => {
   dispatch(LoadingAction(true));
   try {
@@ -24,7 +30,11 @@ export const registerAction = (payload) => async (dispatch) => {
     dispatch(
       payloadSuccessAuth(response.data?.user, response.data?.access_token)
     );
-    setAccesssTokenStoreage();
+    setAccesssTokenStoreage(
+      response.data?.refresh_token,
+      response.data?.cookiesOptions
+    );
+    setCookiesStoreage();
     dispatch(LoadingAction(false));
     return response.data;
   } catch (error) {
@@ -42,6 +52,10 @@ export const login = (payload) => async (dispatch) => {
       payloadSuccessAuth(response.data?.user, response.data?.access_token)
     );
     setAccesssTokenStoreage();
+    setAccesssTokenStoreage(
+      response.data?.refresh_token,
+      response.data?.cookiesOptions
+    );
     dispatch(LoadingAction(false));
     return response.data;
   } catch (error) {
@@ -57,6 +71,10 @@ export const loginGoogleAction = (payload) => async (dispatch) => {
     await setTokenHeader(response.data?.access_token);
     dispatch(
       payloadSuccessAuth(response.data?.user, response.data?.access_token)
+    );
+    setAccesssTokenStoreage(
+      response.data?.refresh_token,
+      response.data?.cookiesOptions
     );
     setAccesssTokenStoreage();
 
@@ -77,6 +95,10 @@ export const loginFacebookAction = (payload) => async (dispatch) => {
       payloadSuccessAuth(response.data?.user, response.data?.access_token)
     );
     setAccesssTokenStoreage();
+    setAccesssTokenStoreage(
+      response.data?.refresh_token,
+      response.data?.cookiesOptions
+    );
     dispatch(LoadingAction(false));
     return response.data;
   } catch (error) {
