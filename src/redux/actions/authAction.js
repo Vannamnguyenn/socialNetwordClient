@@ -2,8 +2,6 @@ import authAPI from "../../api/authAPI";
 import { setTokenHeader } from "../../until/setToken";
 import { AUTH_LOGIN, AUTH_LOGOUT, LOAD_USER } from "../types/authType";
 import { LoadingAction } from "./loadingAction";
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
 
 const payloadSuccessAuth = (user, access_token) => ({
   type: AUTH_LOGIN,
@@ -14,13 +12,12 @@ const payloadSuccessAuth = (user, access_token) => ({
   },
 });
 
-const setAccesssTokenStoreage = () => {
+const setFirtstLogin = () => {
   localStorage.setItem("firstLogin", true);
 };
 
-const setCookiesStoreage = (token, options) => {
-  cookies.set("refresh_token", token);
-  console.log(cookies.get("refresh_token"));
+const setRefreshTokenStorage = (token) => {
+  localStorage.setItem("refresh_token", token);
 };
 
 export const registerAction = (payload) => async (dispatch) => {
@@ -31,11 +28,8 @@ export const registerAction = (payload) => async (dispatch) => {
     dispatch(
       payloadSuccessAuth(response.data?.user, response.data?.access_token)
     );
-    setAccesssTokenStoreage();
-    setCookiesStoreage(
-      response.data?.refresh_token,
-      response.data?.cookiesOptions
-    );
+    setFirtstLogin();
+    setRefreshTokenStorage(response.data?.refresh_token);
     dispatch(LoadingAction(false));
     return response.data;
   } catch (error) {
@@ -52,11 +46,8 @@ export const login = (payload) => async (dispatch) => {
     dispatch(
       payloadSuccessAuth(response.data?.user, response.data?.access_token)
     );
-    setAccesssTokenStoreage();
-    setCookiesStoreage(
-      response.data?.refresh_token,
-      response.data?.cookiesOptions
-    );
+    setFirtstLogin();
+    setRefreshTokenStorage(response.data?.refresh_token);
     dispatch(LoadingAction(false));
     return response.data;
   } catch (error) {
@@ -73,11 +64,8 @@ export const loginGoogleAction = (payload) => async (dispatch) => {
     dispatch(
       payloadSuccessAuth(response.data?.user, response.data?.access_token)
     );
-    setCookiesStoreage(
-      response.data?.refresh_token,
-      response.data?.cookiesOptions
-    );
-    setAccesssTokenStoreage();
+    setRefreshTokenStorage(response.data?.refresh_token);
+    setFirtstLogin();
 
     dispatch(LoadingAction(false));
 
@@ -95,11 +83,8 @@ export const loginFacebookAction = (payload) => async (dispatch) => {
     dispatch(
       payloadSuccessAuth(response.data?.user, response.data?.access_token)
     );
-    setAccesssTokenStoreage();
-    setCookiesStoreage(
-      response.data?.refresh_token,
-      response.data?.cookiesOptions
-    );
+    setFirtstLogin();
+    setRefreshTokenStorage(response.data?.refresh_token);
     dispatch(LoadingAction(false));
     return response.data;
   } catch (error) {
@@ -140,15 +125,19 @@ export const loadingUser = () => async (dispatch) => {
       payload: null,
     });
   try {
-    const response = await authAPI.getAccessToken();
+    const response = await authAPI.getAccessToken(
+      localStorage.getItem("refresh_token")
+    );
     await setTokenHeader(response.data?.access_token);
     dispatch(
       payloadSuccessAuth(response.data?.user, response.data?.access_token)
     );
 
-    setAccesssTokenStoreage();
+    setFirtstLogin();
   } catch (error) {
     localStorage.removeItem("firstLogin");
+    localStorage.removeItem("refresh_token");
+    setTokenHeader(null);
     return dispatch({
       type: LOAD_USER,
       payload: null,
@@ -160,7 +149,7 @@ export const logoutAction = () => async (dispatch) => {
   try {
     const response = await authAPI.logout();
     localStorage.removeItem("firstLogin");
-    cookies.remove("refresh_token");
+    localStorage.removeItem("refresh_token");
     setTokenHeader(null);
     dispatch({
       type: AUTH_LOGOUT,

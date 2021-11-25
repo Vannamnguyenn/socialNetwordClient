@@ -16,8 +16,12 @@ const authAPI = {
   logout() {
     return baseAPI.post("/auth/logout");
   },
-  getAccessToken() {
-    return baseAPI.get("/auth/refresh_token");
+  getAccessToken(token) {
+    return baseAPI.get("/auth/refresh_token", {
+      headers: {
+        Authorization: token,
+      },
+    });
   },
   forgotPassword(payload) {
     return baseAPI.post("/auth/forgot-password", payload);
