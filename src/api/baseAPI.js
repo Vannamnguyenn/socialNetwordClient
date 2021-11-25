@@ -4,8 +4,6 @@ const axiosConfig = axios.create({
   baseURL: "https://social-networking.herokuapp.com/api/v1/",
   headers: {
     "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "https://social-networking.herokuapp.com/",
-    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   },
   withCredentials: true,
 });
