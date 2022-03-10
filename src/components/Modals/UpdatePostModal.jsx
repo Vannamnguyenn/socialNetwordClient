@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updatePost } from "../../redux/actions/postAction";
 import { toastAction } from "../../redux/actions/toastAction";
 import { SET_STATE_UPDATE_POST } from "../../redux/types/stateUpdatePostTypes";
-import TextFieldUpdatePost from "./TextFieldUpdatePost";
+import TextFieldUpdatePost from "./TextFieldUpdatePost.jsx";
 import "./updatePostModal.scss";
 
 const UpdatePostModal = () => {

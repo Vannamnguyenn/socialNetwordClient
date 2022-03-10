@@ -11,6 +11,7 @@ const InputComment = ({ post, reply, tag, commentUpdate, setUpdate }) => {
   const [content, setContent] = useState("");
   const [showPinker, setShowPicker] = useState(false);
   const { user } = useSelector((state) => state.auth);
+  const socket = useSelector((state) => state.socket);
   const dispatch = useDispatch();
 
   const handleConentChange = (e) => {
@@ -21,7 +22,7 @@ const InputComment = ({ post, reply, tag, commentUpdate, setUpdate }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (commentUpdate) {
-      dispatch(updateComment(commentUpdate._id, { content }, post));
+      dispatch(updateComment(commentUpdate._id, { content }, post, socket));
       setUpdate(false);
     } else {
       const payload = {
@@ -35,7 +36,7 @@ const InputComment = ({ post, reply, tag, commentUpdate, setUpdate }) => {
       };
       if (reply) payload.reply = reply;
       if (tag) payload.tag = tag;
-      dispatch(createComment(payload, post));
+      dispatch(createComment(payload, post, socket));
       setContent("");
     }
   };

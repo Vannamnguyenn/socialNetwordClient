@@ -21,7 +21,9 @@ const Auth = ({ page }) => {
   if (isAuthenticated) history.push({ pathname: "/" });
   const responseGoogle = async (response) => {
     if (!response.tokenId) return;
+    console.log(response);
     const payload = { tokenId: response.tokenId };
+
     const data = await dispatch(loginGoogleAction(payload));
     dispatch(toastAction(data));
   };
@@ -66,7 +68,7 @@ const Auth = ({ page }) => {
                   <div className="login_social">
                     <div className="col-6">
                       <GoogleLogin
-                        clientId="811883403522-homcojno6j91tc54hug2ujueg3is442g.apps.googleusercontent.com"
+                        clientId="63324271315-odui1kag3978rhq6qa4g9jccisfu5pcl.apps.googleusercontent.com"
                         buttonText="Google"
                         onSuccess={responseGoogle}
                         autoLoad={false}

@@ -1,0 +1,43 @@
+.contain-notify {
+  padding: 0;
+  margin-bottom: 0.5rem;
+  min-width: 350px;
+  top: calc(100% + 5px);
+  & .dropdown-item {
+    cursor: default;
+    text-decoration: none;
+  }
+  & .item-notify {
+    justify-content: space-between;
+    position: relative;
+    & .is-read-notify {
+      color: #1876f2;
+      position: absolute;
+      bottom: 5px;
+      font-size: 0.8rem;
+      right: 5px;
+    }
+    & img {
+      width: 55px;
+      height: 55px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    & p {
+      margin-bottom: 0;
+      padding-left: 10px;
+    }
+  }
+}
+.notify-number {
+  right: -15px;
+  width: 19px;
+  height: 19px;
+  top: -8px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: crimson;
+  color: white;
+  display: flex;
+}

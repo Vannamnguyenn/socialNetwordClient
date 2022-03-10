@@ -9,6 +9,7 @@ import {
   ADD_POST,
 } from "../types/postTypes";
 import { LoadingAction } from "./loadingAction";
+import { createNotify, deleteNotify } from "./notifyAction";
 import { toastAction } from "./toastAction";
 
 export const getPosts =
@@ -38,25 +39,34 @@ export const getPosts =
     }
   };
 
-export const createPostAction = (content, files) => async (dispatch) => {
-  try {
-    dispatch(LoadingAction(true));
-    const images = await uploadImage(files);
-    const response = await postAPI.createPost({ content, images });
-    dispatch(LoadingAction(false));
-    dispatch(toastAction(response.data));
-    dispatch({
-      type: ADD_POST,
-      payload: {
-        post: response.data.post,
-      },
-    });
-  } catch (error) {
-    console.error(error);
-    dispatch(LoadingAction(false));
-    dispatch(toastAction(error));
-  }
-};
+export const createPostAction =
+  (content, files, user, socket) => async (dispatch) => {
+    try {
+      dispatch(LoadingAction(true));
+      const images = await uploadImage(files);
+      const response = await postAPI.createPost({ content, images });
+      dispatch(LoadingAction(false));
+      dispatch(toastAction(response.data));
+      dispatch({
+        type: ADD_POST,
+        payload: {
+          post: response.data.post,
+        },
+      });
+      const msg = {
+        postID: response.data.post._id,
+        recipients: user.followers,
+        content: response.data.post.content,
+        text: "add a new post",
+        url: `/${response.data.post._id}`,
+      };
+      dispatch(createNotify(msg, socket));
+    } catch (error) {
+      console.error(error);
+      dispatch(LoadingAction(false));
+      dispatch(toastAction(error));
+    }
+  };
 
 export const deletePost = (id) => async (dispatch) => {
   try {
@@ -70,6 +80,12 @@ export const deletePost = (id) => async (dispatch) => {
         id,
       },
     });
+    const payloadDeleteNotify = {
+      postID: id,
+      url: `/${id}`,
+    };
+    console.log(payloadDeleteNotify);
+    dispatch(deleteNotify(payloadDeleteNotify));
   } catch (error) {
     dispatch(LoadingAction(false));
     dispatch(toastAction(error));
@@ -114,7 +130,7 @@ export const updatePost =
     }
   };
 
-export const toggleLikePost = (id, user, post) => async (dispatch) => {
+export const toggleLikePost = (id, user, post, socket) => async (dispatch) => {
   try {
     const index = [...post.likes].findIndex((u) => u._id === user._id);
     let newLikes = [...post.likes];
@@ -134,6 +150,7 @@ export const toggleLikePost = (id, user, post) => async (dispatch) => {
       },
     });
     const res = await postAPI.likePost(id);
+    socket.emit("likePost", res.data.post);
     return res.data;
   } catch (error) {
     console.log(error);

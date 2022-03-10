@@ -7,7 +7,6 @@ export const validateImage = (file) => {
   return err;
 };
 
-//
 export const uploadImage = async (images) => {
   let imgArr = [];
   for (let item of images) {

@@ -1,31 +1,34 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import userAPI from "../../api/userAPI";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { UPDATE_FOLLOW } from "../../redux/types/authType";
 
 const ToggleFollowButton = ({ own, user }) => {
   const dispatch = useDispatch();
   const [check, setCheck] = useState(() => own.following.includes(user._id));
+  const socket = useSelector((state) => state.socket);
   const handleToggleFollow = async (id) => {
     if (check) {
+      await userAPI.unFollowUser(id);
       dispatch({
         type: UPDATE_FOLLOW,
         payload: {
           id,
         },
       });
-      await userAPI.unFollowUser(id);
+      socket.emit("toggleFollow", id);
       return setCheck(false);
     }
 
+    await userAPI.followUser(id);
     dispatch({
       type: UPDATE_FOLLOW,
       payload: {
         id,
       },
     });
-    await userAPI.followUser(id);
+    socket.emit("toggleFollow", id);
     return setCheck(true);
   };
 

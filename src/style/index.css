@@ -56,6 +56,10 @@ video {
   justify-content: center;
 }
 
+.hide {
+  display: none;
+}
+
 @keyframes modal {
   0% {
     transform: scale(1.5);

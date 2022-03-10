@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./renderGalleryGrid.scss";
+import LazyLoad from "react-lazyload";
 
 const RenderGalleryGrid = ({ posts }) => {
   return (
@@ -24,18 +25,32 @@ const RenderGalleryGrid = ({ posts }) => {
             </Link>
 
             {post.images[0].url.match(/video/i) ? (
-              <video
-                src={post.images[0].url}
-                className="d-block w-100"
-                height="300px"
-              ></video>
+              <LazyLoad
+                once={true}
+                placeholder={
+                  <img src="https://i.stack.imgur.com/h6viz.gif" alt="..." />
+                }
+              >
+                <video
+                  src={post.images[0].url}
+                  className="d-block w-100"
+                  height="300px"
+                ></video>
+              </LazyLoad>
             ) : (
-              <img
-                src={post.images[0].url}
-                className="d-block w-100"
-                height="300px"
-                alt=""
-              />
+              <LazyLoad
+                once={true}
+                placeholder={
+                  <img src="https://i.stack.imgur.com/h6viz.gif" alt="..." />
+                }
+              >
+                <img
+                  src={post.images[0].url}
+                  className="d-block w-100"
+                  height="300px"
+                  alt=""
+                />
+              </LazyLoad>
             )}
           </div>
         </div>

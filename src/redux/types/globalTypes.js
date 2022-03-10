@@ -3,4 +3,7 @@ export const GlobalTypes = {
   SET_TOAST: "SET_TOAST",
   CHANGE_THEME: "CHANGE_THEME",
   GET_POST_DETAILS: "GET_POST_DETAILS",
+  SOCKET: "SOCKET",
+  CALL: "CALL",
+  PEER: "PEER",
 };

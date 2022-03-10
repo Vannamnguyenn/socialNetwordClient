@@ -14,10 +14,11 @@ import "./post.scss";
 const Post = ({ post, styleImgDetails = null }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  const socket = useSelector((state) => state.socket);
   const checkLike = post.likes.findIndex((u) => u._id === user._id) !== -1;
   const checkSavePost = user.saved.indexOf(post._id) !== -1;
   const handleToggleLike = (id) => {
-    dispatch(toggleLikePost(id, user, post));
+    dispatch(toggleLikePost(id, user, post, socket));
   };
   const handleToggleSave = (id) => {
     dispatch(toggleSavedPost(id, user, post));

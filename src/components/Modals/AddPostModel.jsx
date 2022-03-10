@@ -19,6 +19,7 @@ const AddPostModel = ({ path }) => {
   const { user } = useSelector((state) => state.auth);
   const [files, setFiles] = useState([]);
   const [showShare, setShowShare] = useState(false);
+  const socket = useSelector((state) => state.socket);
   const dispatch = useDispatch();
   const handleCreate = () => {
     setShow(true);
@@ -44,6 +45,14 @@ const AddPostModel = ({ path }) => {
           })
         );
       }
+      if (!file.type.includes("image") && !file.type.includes("video")) {
+        return dispatch(
+          toastAction({
+            success: false,
+            msg: "Please choose image or video !",
+          })
+        );
+      }
     }
     setFiles([...e.target.files]);
   };
@@ -53,7 +62,7 @@ const AddPostModel = ({ path }) => {
   };
 
   const handleSubmit = (content) => {
-    dispatch(createPostAction(content, files));
+    dispatch(createPostAction(content, files, user, socket));
     setShow(false);
     setFiles([]);
     return history.push({ pathname: "/" });

@@ -12,17 +12,18 @@ import {
 
 const ItemComment = ({ comment, post }) => {
   const { user } = useSelector((state) => state.auth);
+  const socket = useSelector((state) => state.socket);
   const dispatch = useDispatch();
   const checkRole = user._id === comment.user._id || user._id === post.userID;
   const [reply, setReply] = useState(false);
   const [update, setUpdate] = useState(false);
 
   const handleDeleteComment = () => {
-    dispatch(deleteComment(comment._id, post));
+    dispatch(deleteComment(comment._id, post, socket));
   };
 
   const handleToggleLike = () => {
-    dispatch(toggleLikeComment(comment._id, post, user));
+    dispatch(toggleLikeComment(comment._id, post, user, socket));
   };
 
   return (

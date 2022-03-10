@@ -110,6 +110,9 @@
     }
     & .nav-right-list {
       justify-content: space-between;
+      & .dropdown-menu[data-bs-popper] {
+        right: -100%;
+      }
       & .nav-right-item-avatar {
         position: relative;
         &:hover .nav-right-item-dropdown {
