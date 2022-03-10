@@ -13,7 +13,7 @@ const Socket = () => {
   const { user } = useSelector((state) => state.auth);
   const { isNotifyOn } = useSelector((state) => state.notify);
   const { currentConversation } = useSelector((state) => state.message);
-  const call = useSelector((state) => state.call);
+  // const call = useSelector((state) => state.call);
   const dispatch = useDispatch();
   const socket = useSelector((state) => state.socket);
   const audio = useRef(null);

@@ -44,7 +44,7 @@ const CallModal = () => {
   };
 
   // add messages
-  const addMessage = () => {};
+  // const addMessage = () => {};
 
   // handle end call
   const handleClose = () => {
@@ -101,7 +101,7 @@ const CallModal = () => {
       }, 15000);
       return () => clearTimeout(timer);
     }
-  }, [dispatch, answer, user._id]);
+  }, [dispatch, answer, user._id, socket]);
 
   // add call event peer
   useEffect(() => {
@@ -142,7 +142,7 @@ const CallModal = () => {
       });
     });
     return () => socket.off("endCallToClient");
-  }, [dispatch, socket, tracks, otherVideo]);
+  }, [dispatch, socket, tracks, otherVideo, callOther]);
 
   return (
     <Modal
