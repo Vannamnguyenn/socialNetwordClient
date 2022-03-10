@@ -19,7 +19,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const socket = io("http://localhost:5000/");
+    const socket = io("https://social-networking.herokuapp.com/");
     dispatch({
       type: GlobalTypes.SOCKET,
       payload: socket,
