@@ -80,7 +80,7 @@ const Header = () => {
                   placement="bottom-start"
                   overlay={<Tooltip>Messenger</Tooltip>}
                 >
-                  <Link to="/">
+                  <Link to="/message">
                     <svg
                       aria-label="Messenger"
                       className="_8-yf5 "
