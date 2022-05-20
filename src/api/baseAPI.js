@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosConfig = axios.create({
-  baseURL: "https://social-networking.herokuapp.com/api/v1/",
+  baseURL: "https://serversocialnetword-production.up.railway.app/api/v1/",
   // baseURL: "http://localhost:5000/api/v1/",
   headers: {
     "Content-Type": "application/json",
