@@ -19,7 +19,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const socket = io("https://social-networking.herokuapp.com/");
+    const socket = io("https://serversocialnetword-production.up.railway.app/");
     dispatch({
       type: GlobalTypes.SOCKET,
       payload: socket,
